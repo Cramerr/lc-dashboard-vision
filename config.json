@@ -2,7 +2,7 @@
   "guild_name": "Vision",
   "guild_subtitle": "Loot Council Summary",
   "page_title": "Vision LC",
-  "cf_worker_url": "https://YOURCLOUDFLAREWORKER.workers.dev",
+  "cf_worker_url": "https://lc-worker.preggit.workers.dev",
   "enable_apps_script": true,
   "apps_script": "https://script.google.com/macros/s/AKfycbzZIqPowIygeLuRO1vmXZPWf9jnzq48A53VFDEv13uJUPC_HzfAm0McNYuQ3grTGCh7Ag/exec",
   "formula": {
