@@ -4,7 +4,7 @@
   "page_title": "Vision LC",
   "cf_worker_url": "https://lc-worker.preggit.workers.dev",
   "enable_apps_script": true,
-  "apps_script": "https://script.google.com/macros/s/AKfycbzZIqPowIygeLuRO1vmXZPWf9jnzq48A53VFDEv13uJUPC_HzfAm0McNYuQ3grTGCh7Ag/exec",
+  "apps_script": "https://script.google.com/macros/s/AKfycbz1EuGtjHd6dDPRNxd3SJ9QCS7_eNz4okzmcUWwXLyRFTslgfjXh1sZRHaG4Mys1nWZ2A/exec",
   "formula": {
     "use_effective_attendance": true,
     "tenure_forgiveness_halflife": 8,
