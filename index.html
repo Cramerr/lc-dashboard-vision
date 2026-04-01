@@ -2013,17 +2013,29 @@ function setPlayerAttendanceOverride(playerName, dateStr, value) {
 }
 
 function formatAttendanceDate(date) {
-  // ISO date string YYYY-MM-DD
-  return date.toISOString().slice(0, 10);
+  // If 'date' is a string, convert it to a Date object first
+  const d = (date instanceof Date) ? date : new Date(date);
+  
+  // Check if the date is valid before calling toISOString
+  if (isNaN(d.getTime())) {
+    console.warn("Invalid date passed to formatAttendanceDate:", date);
+    return "1970-01-01"; // Or a sensible fallback like today's date
+  }
+  
+  return d.toISOString().slice(0, 10);
 }
 
 function todayMST() {
-  // Return today's date as YYYY-MM-DD in MST (UTC-7, no DST adjustment)
-  const now = new Date();
-  const mst = new Date(now.getTime() - 7 * 60 * 60 * 1000);
-  return mst.toISOString().slice(0, 10);
+  try {
+    const now = new Date();
+    // MST is UTC-7
+    const mst = new Date(now.getTime() - 7 * 60 * 60 * 1000);
+    return mst.toISOString().slice(0, 10);
+  } catch (e) {
+    console.error("Error calculating todayMST:", e);
+    return new Date().toISOString().slice(0, 10); // Ultimate fallback
+  }
 }
-
 function formatRaidLabel(date) {
   // "Mar 19" style
   return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
@@ -4292,7 +4304,7 @@ function _applyClaStoredParsed() {
   // Pre-populate ALL sheet dates before any recency comparisons so they're available
   for (const label of _allLabels) {
     const pd = _claStoredParsed[label];
-    if (pd?.sheetDate) claSheetDates[label] = pd.sheetDate;
+    if (pd?.sheetDate) claSheetDates[label] = pd.sheetDate instanceof Date ? pd.sheetDate : new Date(pd.sheetDate);
   }
 
   for (const label of _allLabels) {
